@@ -1,0 +1,34 @@
+/* Override Bootstrap's default height for smaller input */
+.form-control.compact {
+  height: 35px !important;       /* force smaller height */
+  padding: 0.25rem 0.5rem !important; /* reduce internal spacing */
+  font-size: 0.9rem !important;  /* optional: smaller text */
+}
+
+.form-control.compact ~ label {
+  font-size: 0.75rem !important; /* shrink floating label */
+  top: 0.1rem !important;        /* adjust vertical position */
+}
+
+/* Make the card a positioning context */
+.card.watermark-card {
+  position: relative;
+  overflow: hidden; /* prevent rotated watermark from overflowing */
+}
+
+/* Watermark sash */
+.card.watermark-card .watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-size: 2rem;
+  font-weight: bold;
+  color: white; /* semi-transparent red */
+  text-align: center;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 1000; /* on top of everything */
+  width: 200%; /* make it long enough to cross card diagonally */
+  background-color: red;
+}

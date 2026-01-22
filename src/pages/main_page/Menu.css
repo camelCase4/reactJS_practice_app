@@ -1,0 +1,12 @@
+.gradient-text {
+  background: linear-gradient(90deg, #ff7f7f, #800000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+
+.card-max {
+  max-height: 400px; /* set your desired max height */
+  overflow: hidden;  /* hide anything that goes beyond */
+}
+

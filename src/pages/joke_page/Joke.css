@@ -1,0 +1,9 @@
+.category-box {
+  transition: transform 0.2s, background-color 0.2s; /* smooth hover effect */
+  cursor: pointer; /* makes the cursor a pointer */
+}
+
+.category-box:hover {
+  background-color: #0d6efd; /* slightly darker or different color on hover */
+  transform: scale(1.05); /* slight zoom effect */
+}
