@@ -24,9 +24,9 @@ function JokeLine({
   return (
     <>
       <div className="d-flex justify-content-start align-items-center mb-2">
-        <button className="btn btn-danger btn-sm me-2" onClick={handleLeaveBtn}>
+        {/* <button className="btn btn-danger btn-sm me-2" onClick={handleLeaveBtn}>
           Leave
-        </button>
+        </button> */}
         <p className="my-0 fs-6">
           <small>Category : {categoryChosen}</small>
         </p>

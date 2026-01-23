@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Movie.css";
+import MovieComponent from "./MovieComponent";
 
 interface MovieCardProps {
   movieTitle: string;
@@ -8,6 +9,7 @@ interface MovieCardProps {
   movieImg: string;
   movieID: number;
   handleBtnDelete: (id: number, btnType: number) => void;
+  handleDoubleClick: (action: number, movieComp?: MovieComponent) => void;
 }
 
 function MovieCard({
@@ -17,12 +19,24 @@ function MovieCard({
   movieImg,
   movieID,
   handleBtnDelete,
+  handleDoubleClick,
 }: MovieCardProps) {
   const [deleteWatermark, setDeleteWatermark] = useState(false);
 
   return (
     <>
-      <div className="col-md-3" onDoubleClick={() => {}}>
+      <div
+        className="col-md-3"
+        onDoubleClick={() => {
+          handleDoubleClick(2, {
+            movieID,
+            movieName: movieTitle,
+            movieDescription,
+            starScore: movieScore,
+            moviePoster: movieImg,
+          });
+        }}
+      >
         <div className="card mb-4 watermark-card" style={{ height: "630px" }}>
           {deleteWatermark && <div className="watermark">TO BE DELETED</div>}
           <img

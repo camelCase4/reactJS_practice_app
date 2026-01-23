@@ -3,6 +3,7 @@ import Layout from "./main_layout/Layout";
 import Menu from "./pages/main_page/Menu";
 import Joke from "./pages/joke_page/Joke";
 import Movie from "./pages/movie_page/Movie";
+import Anime from "./pages/anime_page/Anime";
 import { ToastContainer } from "react-toastify";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path="/" element={<Menu />} />
           <Route path="/jokes" element={<Joke />} />
           <Route path="/movies" element={<Movie />} />
+          <Route path="/anime" element={<Anime />} />
         </Route>
       </Routes>
     </>

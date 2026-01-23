@@ -21,6 +21,8 @@ function Menu() {
         navigate("/jokes");
       } else if (index === 1) {
         navigate("/movies");
+      } else if (index === 2) {
+        navigate("/anime");
       }
     }, 1000);
   };

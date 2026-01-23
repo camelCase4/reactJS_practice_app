@@ -18,10 +18,11 @@ function Movie() {
   const [opFailed, showOpFailed] = useState(false);
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
   const [deleteQueue, setDeleteQueue] = useState<number[]>([]);
-  const [textVal, setTextVal] = useState("");
+  const [actionType, setActionType] = useState<number>(-1);
 
   // modal input
   const [movieTitle, setMovieTitle] = useState("");
+  const [movieID, setmMovieID] = useState<number>(-1);
   const [movieScore, setMovieScore] = useState<number | "">("");
   const [moviePoster, setMoviePoster] = useState("");
   const [movieDescription, setmovieDescription] = useState("");
@@ -30,9 +31,9 @@ function Movie() {
 
   const API_BASE_MOVIE_URL = "https://localhost:7211/api/movie";
 
-  const handleLeaveBtn = () => {
-    navigate(-1);
-  };
+  // const handleLeaveBtn = () => {
+  //   navigate(-1);
+  // };
 
   const fetchMovies = async () => {
     try {
@@ -79,6 +80,49 @@ function Movie() {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         console.log("Movie saved successfully");
+        loadMovies();
+      } catch (error) {
+        failed = true;
+        console.error(`Error fetching movies: ${error}`);
+        showOpFailed(true);
+      } finally {
+        setMovieTitle("");
+        setMovieScore("");
+        setMoviePoster("");
+        setmovieDescription("");
+        showSaveLoader(false);
+        if (!failed) {
+          showModal(false);
+        }
+      }
+    }, 1000);
+  };
+
+  const handleUpdateBtnClick = async () => {
+    var failed = false;
+
+    var payload: MovieComponent = {
+      movieID: movieID,
+      movieName: movieTitle,
+      movieDescription: movieDescription,
+      starScore: movieScore === "" ? 1 : movieScore,
+      moviePoster: moviePoster,
+    };
+    showSaveLoader(true);
+    setTimeout(async () => {
+      try {
+        const endpoint = `${API_BASE_MOVIE_URL}/updateMovies`;
+        const response = await fetch(endpoint, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) {
+          failed = true;
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        console.log("Movie updated successfully");
         loadMovies();
       } catch (error) {
         failed = true;
@@ -171,8 +215,20 @@ function Movie() {
     setMovies(filteredMovies);
   };
 
-  const handleAddBtn = () => {
-    showModal(true);
+  const handleAddBtn = (action: number, movieComp?: MovieComponent) => {
+    // 1 = adding, 2 = updating
+    if (action === 1) {
+      setActionType(1);
+      showModal(true);
+    } else {
+      setActionType(2);
+      setmMovieID(movieComp!.movieID!);
+      setMovieTitle(movieComp!.movieName);
+      setMovieScore(movieComp!.starScore);
+      setMoviePoster(movieComp!.moviePoster);
+      setmovieDescription(movieComp!.movieDescription);
+      showModal(true);
+    }
   };
   const handleDeleteBtn = () => {
     setDeleteConfirmation(true);
@@ -328,6 +384,7 @@ function Movie() {
                     onClick={() => {
                       showOpFailed(false);
                       showModal(false);
+                      handoleBtnModalClose();
                     }}
                   >
                     Close
@@ -340,13 +397,21 @@ function Movie() {
                       />
                       <span className="fst-italic text-black">Saving</span>
                     </div>
-                  ) : (
+                  ) : actionType === 1 ? (
                     <button
                       type="button"
                       onClick={handleInserBtnClick}
                       className={`btn btn-primary ${!urlWarning && !scoreMaxWarning && inputChecker() ? "" : "disabled"}`}
                     >
                       Save movie
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={handleUpdateBtnClick}
+                      className={`btn btn-primary ${!urlWarning && !scoreMaxWarning && inputChecker() ? "" : "disabled"}`}
+                    >
+                      Update movie
                     </button>
                   )}
                 </div>
@@ -436,12 +501,12 @@ function Movie() {
           <div className="row mb-4 align-items-center">
             <div className="col-12 col-md-8 mb-2 mb-md-0">
               <div className="input-group">
-                <button
+                {/* <button
                   className="btn btn-danger btn-sm me-2"
                   onClick={handleLeaveBtn}
                 >
                   ← Leave
-                </button>
+                </button> */}
                 <input
                   type="text"
                   className="form-control"
@@ -461,7 +526,7 @@ function Movie() {
                 </button>
                 <button
                   className="btn btn-success btn-sm ms-2"
-                  onClick={handleAddBtn}
+                  onClick={() => handleAddBtn(1)}
                 >
                   Add Movie
                 </button>
@@ -511,6 +576,7 @@ function Movie() {
                   movieImg={movie.moviePoster}
                   movieID={movie.movieID!}
                   handleBtnDelete={handleDeleteMovieBtn}
+                  handleDoubleClick={() => handleAddBtn(2, { ...movie })}
                 />
               ))
             )}
