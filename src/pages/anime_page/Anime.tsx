@@ -145,7 +145,7 @@ function Anime() {
         </>
       )}
       <div className="m-5">
-        <PageTitles h3Title="Anime Images!" h6Title="Choose a category" />
+        <PageTitles h3Title="Anime Hub!" h6Title="Choose a category" />
 
         <div className="row text-center" style={{ height: "500px" }}>
           <div className="col-4">

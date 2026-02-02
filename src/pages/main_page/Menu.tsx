@@ -3,6 +3,9 @@ import jokeImg from "./imgs/joke_module.jpg";
 import movieImg from "./imgs/movie_module.jpg";
 import comingSoonImg from "./imgs/coming_soon.jpg";
 import animeImg from "./imgs/anime_module.jpg";
+import gameImg from "./imgs/game_module.jpg";
+import triviaImg from "./imgs/trivia_module.jpeg";
+import jesusImg from "./imgs/jesus_module.jpg";
 
 import { useState } from "react";
 import Card from "./Card";
@@ -23,6 +26,8 @@ function Menu() {
         navigate("/movies");
       } else if (index === 2) {
         navigate("/anime");
+      } else if (index === 3) {
+        navigate("/verses");
       }
     }, 1000);
   };
@@ -30,30 +35,53 @@ function Menu() {
   const cardTitle = [
     "Have some laugh, don't be too serious!",
     "Find your favorite Netflix Movies!",
-    "Love anime? have a look ;)",
+    "Love anime? have a look 😉",
+    "Heal your soul with Jesus!",
+    "Let us test your IQ! Trivia Time!",
+    "Looking for some entertainment leisures?",
     "Coming Soon...",
   ];
   const cardText = [
     "A randomly generated joke to lighten up your day.",
     "A real-time search module to find Netflix movies by title.",
     "A place where anime-lovers dwell.",
+    "Your daily dose of verses.",
+    "Test your IQ with our trivia game!",
+    "A gamer's paradise!",
     "Coming Soon...",
   ];
 
-  const cardImages = [jokeImg, movieImg, animeImg, comingSoonImg];
+  const cardImages = [
+    jokeImg,
+    movieImg,
+    animeImg,
+    jesusImg,
+    triviaImg,
+    gameImg,
+    comingSoonImg,
+  ];
 
   const cards = cardTitle.map((title, index) => ({
     title: title,
     cardText: cardText[index],
     cardImage: cardImages[index],
-    disabledIndex: index === 3,
+    disabledIndex: index >= 4,
   }));
 
   return (
     <>
       <div className="text-center m-5">
         <PageTitles h3Title="Menu Page!" h6Title="Choose a Module"></PageTitles>
-        <div className="row mt-5">
+        <div
+          className="scroll-container"
+          onWheel={(e) => {
+            const container = e.currentTarget;
+            if (e.deltaY !== 0) {
+              container.scrollLeft += e.deltaY; // scroll horizontally
+              e.preventDefault(); // prevent vertical scrolling
+            }
+          }}
+        >
           {cards.map((card, index) => (
             <Card
               card={card}

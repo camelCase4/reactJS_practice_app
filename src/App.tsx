@@ -4,6 +4,7 @@ import Menu from "./pages/main_page/Menu";
 import Joke from "./pages/joke_page/Joke";
 import Movie from "./pages/movie_page/Movie";
 import Anime from "./pages/anime_page/Anime";
+import Verses from "./pages/verses_page/Verses";
 import { ToastContainer } from "react-toastify";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/jokes" element={<Joke />} />
           <Route path="/movies" element={<Movie />} />
           <Route path="/anime" element={<Anime />} />
+          <Route path="/verses" element={<Verses />} />
         </Route>
       </Routes>
     </>

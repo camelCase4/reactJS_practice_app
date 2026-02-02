@@ -279,6 +279,8 @@ function Movie() {
     setmovieDescription("");
     showOpFailed(false);
     showModal(false);
+    showUrlWarning(false);
+    showScoreMaxWarning(false);
   };
 
   const handleDeleteMovieBtn = (id: number, btnType: number) => {
