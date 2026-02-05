@@ -53,13 +53,15 @@ function Card({ card, index, loader, handleLoad }: CardProps) {
             {card.disabledIndex ? (
               <div className="d-flex justify-content-start mt-3">
                 <a className="btn btn-custom-success text-white disabled">
-                  <small>Go Inside</small>
+                  <small>Enter</small>
                 </a>
               </div>
             ) : loader === index ? (
               <div className="d-flex align-items-center gap-2">
                 <div className="spinner-border text-primary" role="status" />
-                <span className="fst-italic text-muted">Navigating...</span>
+                <span className="fst-italic text-muted">
+                  <small>Navigating...</small>
+                </span>
               </div>
             ) : (
               <div className="d-flex justify-content-start mt-3">
@@ -67,7 +69,7 @@ function Card({ card, index, loader, handleLoad }: CardProps) {
                   className="btn btn-custom-success text-white"
                   onClick={() => handleLoad(index)}
                 >
-                  <small>Go Inside</small>
+                  <small>Enter</small>
                 </button>
               </div>
             )}

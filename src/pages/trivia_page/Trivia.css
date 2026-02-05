@@ -1,0 +1,28 @@
+.btn-gradient {
+  width: 410px;
+  background: linear-gradient(90deg, #212529 55%, #6c757d 100%);
+  color: white;
+  transition: all 0.3s ease; /* smooth hover effect */
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(90deg, #343a40 55%, #adb5bd 100%);
+  transform: translateY(-2px); /* slight lift effect */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.confetti-wrapper {
+  transition: opacity 0.5s ease-out;
+  opacity: 1;
+  position: fixed; /* so it overlays the whole page */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* so it doesn’t block clicks */
+  z-index: 9999;
+}
+
+.confetti-wrapper.fade-out {
+  opacity: 0;
+}

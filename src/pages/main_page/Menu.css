@@ -1,5 +1,6 @@
 .gradient-text {
-  background: linear-gradient(90deg, #ff7f7f, #6395e0);
+  /* background: linear-gradient(90deg, #ff7f7f, #6395e0); */
+  background: whitesmoke;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bold;
@@ -37,8 +38,13 @@
 
 /* in your CSS file */
 .btn-custom-success {
-  background-color: #1b6359f3 !important;
+  /* background-color: #1b6359f3 !important; */
   border-color: #1b6359f3 !important;
+   background: linear-gradient(
+    145deg,         /* diagonal gradient for a modern look */
+    #1b6359f3 0%,   /* darker teal */
+    #259187f3 70%  /* lighter teal at the tip */
+  ) !important;
   color: white; /* ensures text is readable */
 }
 

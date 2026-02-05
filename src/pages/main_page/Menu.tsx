@@ -28,6 +28,8 @@ function Menu() {
         navigate("/anime");
       } else if (index === 3) {
         navigate("/verses");
+      } else if (index === 4) {
+        navigate("/trivia");
       }
     }, 1000);
   };
@@ -65,7 +67,7 @@ function Menu() {
     title: title,
     cardText: cardText[index],
     cardImage: cardImages[index],
-    disabledIndex: index >= 4,
+    disabledIndex: index >= 5,
   }));
 
   return (

@@ -1,5 +1,11 @@
 /* Menu.css */
 .all-page {
-  background-color: #1b6359f3; /* dark blue */
+  /*background-color: #1b6359f3;*/ /* dark blue */
+   background: linear-gradient(
+    180deg,           /* top → bottom */
+    #253836f3 0%,     /* your current color at the top */
+    #2d4a4a 80%,      /* slightly lighter teal in the middle */
+    #3b6363 100%      /* light tip at the bottom */
+  );
   color: #ffffff;           /* white text */
 }

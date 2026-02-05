@@ -18,8 +18,11 @@ function Header() {
 
   return (
     <header
-      className="bg-dark text-white px-4 py-3 d-flex align-items-center justify-content-between shadow"
-      style={{ position: "relative" }}
+      className=" text-white px-4 py-3 d-flex align-items-center justify-content-between shadow"
+      style={{
+        position: "relative",
+        background: "linear-gradient(90deg, #212529 95%, #6c757d 100%)", // dark → light
+      }}
     >
       {/* Left: Back Button + App Name + Logo */}
       <div className="d-flex align-items-center">

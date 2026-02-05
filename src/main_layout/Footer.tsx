@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <>
-      <footer className="bg-dark text-light text-center py-4">
+      <footer className=" bg-dark text-light text-center py-3">
         <small
           className="text-white opacity-75 "
           style={{ fontSize: "0.8rem" }}

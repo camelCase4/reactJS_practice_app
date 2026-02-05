@@ -9,6 +9,10 @@ function Anime() {
   const [generatedImg, setGeneratedImgs] = useState(noAnimeImg);
   const [imgLoader, setImgLoader] = useState(false);
   const [failedFetch, setFailedFetch] = useState(false);
+  const [exclusiveCode, setExclusiveCode] = useState("");
+  const [codeIncorrect, setCodeIncorrect] = useState(false);
+
+  const EXCLUSIVE_CODE = "n0_m1n0r$";
 
   const API_BASE_URL = "https://api.waifu.pics";
 
@@ -59,14 +63,22 @@ function Anime() {
   };
 
   const onModalClose = () => {
+    setCodeIncorrect(false);
+    setExclusiveCode("");
     setExplicitModal(false);
   };
 
   const onModalProceed = () => {
-    setSubCategory("");
-    setActiveTab("NSFW");
-    setExplicitModal(false);
-    setGeneratedImgs(noAnimeImg);
+    if (exclusiveCode === EXCLUSIVE_CODE) {
+      setSubCategory("");
+      setActiveTab("NSFW");
+      setExplicitModal(false);
+      setGeneratedImgs(noAnimeImg);
+      setCodeIncorrect(false);
+      setExclusiveCode("");
+    } else {
+      setCodeIncorrect(true);
+    }
   };
 
   const onClickSubCategory = (subCateg: string) => {
@@ -118,6 +130,25 @@ function Anime() {
                   <p className="text-muted">
                     Are you really sure you want to continue?
                   </p>
+                  <span
+                    className={`badge text-bg-danger ms-2 mb-2 ${codeIncorrect ? "" : "d-none"}`}
+                  >
+                    Code Incorrect
+                  </span>
+                  <div className="form-floating mb-3">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="exclusiveCode"
+                      value={exclusiveCode}
+                      placeholder="Exclusive Code"
+                      onChange={(e) => {
+                        setCodeIncorrect(false);
+                        setExclusiveCode(e.target.value);
+                      }}
+                    />
+                    <label htmlFor="floatingInput">Exlusive Code</label>
+                  </div>
                 </div>
 
                 <div className="modal-footer">
@@ -145,7 +176,37 @@ function Anime() {
         </>
       )}
       <div className="m-5">
-        <PageTitles h3Title="Anime Hub!" h6Title="Choose a category" />
+        <h3>
+          <small>
+            <span>
+              Welcome to{" "}
+              <span
+                style={{
+                  fontWeight: "bold",
+                  background: "linear-gradient(90deg, #212529)", // black background
+                  padding: "5px 10px 5px 10px", // some horizontal padding
+                  borderRadius: "5px", // optional: slightly rounded corners
+                }}
+              >
+                Anime
+                <span
+                  style={{
+                    background:
+                      "linear-gradient(90deg, #f7d038 0%, #f57c00 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  Hub!
+                </span>
+              </span>
+            </span>
+          </small>
+        </h3>
+
+        <h6 className="mb-4">
+          <small>{"Choose a category"}</small>
+        </h6>
 
         <div className="row text-center" style={{ height: "500px" }}>
           <div className="col-4">

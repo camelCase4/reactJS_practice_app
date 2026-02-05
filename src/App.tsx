@@ -6,13 +6,14 @@ import Movie from "./pages/movie_page/Movie";
 import Anime from "./pages/anime_page/Anime";
 import Verses from "./pages/verses_page/Verses";
 import { ToastContainer } from "react-toastify";
+import Trivia from "./pages/trivia_page/Trivia";
 
 function App() {
   return (
     <>
       <ToastContainer
         position="top-right"
-        autoClose={8500}
+        autoClose={6500}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -30,6 +31,7 @@ function App() {
           <Route path="/movies" element={<Movie />} />
           <Route path="/anime" element={<Anime />} />
           <Route path="/verses" element={<Verses />} />
+          <Route path="/trivia" element={<Trivia />} />
         </Route>
       </Routes>
     </>
