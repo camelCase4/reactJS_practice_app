@@ -142,6 +142,7 @@ function Anime() {
                       id="exclusiveCode"
                       value={exclusiveCode}
                       placeholder="Exclusive Code"
+                      autoComplete="off"
                       onChange={(e) => {
                         setCodeIncorrect(false);
                         setExclusiveCode(e.target.value);
@@ -260,7 +261,7 @@ function Anime() {
                 </div>
               </div>
               <button
-                className={`btn btn-warning btn-sm rounded-top-0 ${activeTab !== "" && subCategory !== "" ? "" : "disabled"}`}
+                className={`btn btn-warning btn-sm rounded-top-0 fw-bold ${activeTab !== "" && subCategory !== "" ? "" : "disabled"}`}
                 onClick={() => {
                   setImgLoader(true);
                   setFailedFetch(false);
@@ -269,7 +270,7 @@ function Anime() {
                   }, 2000);
                 }}
               >
-                Generate
+                <small>Generate</small>
               </button>
             </div>
           </div>

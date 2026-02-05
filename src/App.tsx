@@ -7,6 +7,7 @@ import Anime from "./pages/anime_page/Anime";
 import Verses from "./pages/verses_page/Verses";
 import { ToastContainer } from "react-toastify";
 import Trivia from "./pages/trivia_page/Trivia";
+import Games from "./pages/game_page/Games";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/anime" element={<Anime />} />
           <Route path="/verses" element={<Verses />} />
           <Route path="/trivia" element={<Trivia />} />
+          <Route path="/games" element={<Games />} />
         </Route>
       </Routes>
     </>

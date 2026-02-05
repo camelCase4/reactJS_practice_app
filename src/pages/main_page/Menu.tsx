@@ -30,6 +30,8 @@ function Menu() {
         navigate("/verses");
       } else if (index === 4) {
         navigate("/trivia");
+      } else if (index === 5) {
+        navigate("/games");
       }
     }, 1000);
   };
@@ -67,7 +69,7 @@ function Menu() {
     title: title,
     cardText: cardText[index],
     cardImage: cardImages[index],
-    disabledIndex: index >= 5,
+    disabledIndex: index >= 6,
   }));
 
   return (

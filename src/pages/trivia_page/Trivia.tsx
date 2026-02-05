@@ -364,15 +364,22 @@ function Trivia() {
             </div>
             <div className="text-center">
               <button
-                className={`btn btn-gradient mt-3 text-white ${answeredQuestions.size === questionNum ? "" : "disabled"}`}
+                className={`btn btn-gradient mt-3 text-white w-100 w-md-auto ${
+                  answeredQuestions.size === questionNum ? "" : "disabled"
+                }`}
                 onClick={() => handleCompleteBtn()}
               >
                 {completeBtnClick ? "New Trivia" : "Complete"}
               </button>
             </div>
+
             <div className="text-center">
               <button
-                className={`btn btn-gradient mt-3 text-white ${questionsList.length !== 0 && !completeBtnClick ? "" : "disabled"}`}
+                className={`btn btn-gradient mt-3 text-white w-100 w-md-auto ${
+                  questionsList.length !== 0 && !completeBtnClick
+                    ? ""
+                    : "disabled"
+                }`}
                 onClick={() => handleCompleteBtn(2)}
               >
                 Quit
